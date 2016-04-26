@@ -20,6 +20,7 @@ def parse_arguments():
     args = parser.parse_args()
     if not args.ovpn_file:
         args.ovpn_file = args.inputfile
+    args.outputdir = args.outputdir+'/'
     return args
 
 
@@ -44,17 +45,17 @@ def main(args):
     except FileExistsError:
         pass
 
-    with open(args.outputdir+args.ca_file, 'w') as f:
-        f.write(ca)
+    f = open(args.outputdir+args.ca_file, 'w')
+    f.write(ca)
 
-    with open(args.outputdir+args.cert_file, 'w') as f:
-        f.write(cert)
+    f = open(args.outputdir+args.cert_file, 'w')
+    f.write(cert)
 
-    with open(args.outputdir+args.key_file, 'w') as f:
-        f.write(key)
+    f = open(args.outputdir+args.key_file, 'w')
+    f.write(key)
 
-    with open(args.outputdir+args.ovpn_file, 'w') as f:
-        f.write(data)
+    f = open(args.outputdir+args.ovpn_file, 'w')
+    f.write(data)
 
 if __name__ == "__main__":
     args = parse_arguments()
